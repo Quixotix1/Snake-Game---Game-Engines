@@ -1,0 +1,59 @@
+[gd_scene format=3 uid="uid://dv8a6ouv460wn"]
+
+[ext_resource type="Texture2D" uid="uid://dihy15lholj43" path="res://Sprites/BG.png" id="1_qxrlw"]
+[ext_resource type="PackedScene" uid="uid://dsi3wkudlqq4s" path="res://Scenes/wall.tscn" id="2_qxrlw"]
+[ext_resource type="Script" uid="uid://nvuonsimnj3c" path="res://Scripts/player.gd" id="3_wowpa"]
+[ext_resource type="Script" uid="uid://c2rkrm1hkxi8k" path="res://Scripts/game_timer.gd" id="3_wrm1d"]
+[ext_resource type="PackedScene" uid="uid://6ros8wntyl02" path="res://Scenes/snake_body.tscn" id="4_i6g32"]
+[ext_resource type="Script" uid="uid://bs6m0667xyjd3" path="res://Scripts/spawner.gd" id="5_i6g32"]
+[ext_resource type="PackedScene" uid="uid://dmfu7xlch4dy" path="res://Scenes/apple.tscn" id="6_i6g32"]
+[ext_resource type="Script" uid="uid://db8knkm2w7lvl" path="res://Scripts/fruit_handler.gd" id="7_1l0tm"]
+
+[node name="Game" type="Node2D" unique_id=869668676]
+
+[node name="Bg" type="Sprite2D" parent="." unique_id=904624425]
+position = Vector2(960, 540)
+scale = Vector2(120, 67.5)
+texture = ExtResource("1_qxrlw")
+
+[node name="Walls" type="Node2D" parent="." unique_id=1655011042]
+
+[node name="Wall" parent="Walls" unique_id=232830423 instance=ExtResource("2_qxrlw")]
+position = Vector2(960, 15)
+scale = Vector2(200, 5)
+
+[node name="Wall2" parent="Walls" unique_id=1702027442 instance=ExtResource("2_qxrlw")]
+position = Vector2(960, 1056)
+scale = Vector2(200, 5)
+
+[node name="Wall3" parent="Walls" unique_id=2049748570 instance=ExtResource("2_qxrlw")]
+position = Vector2(0, 579)
+scale = Vector2(5, 100)
+
+[node name="Wall4" parent="Walls" unique_id=727607486 instance=ExtResource("2_qxrlw")]
+position = Vector2(1920, 574)
+scale = Vector2(5, 100)
+
+[node name="Snake" type="Node2D" parent="." unique_id=2053487853]
+script = ExtResource("3_wowpa")
+length = 5
+body_object = ExtResource("4_i6g32")
+
+[node name="GameTimer" type="Timer" parent="." unique_id=319433842]
+wait_time = 0.3
+autostart = true
+script = ExtResource("3_wrm1d")
+
+[node name="Spawner" type="Node2D" parent="." unique_id=622773985 node_paths=PackedStringArray("parent")]
+script = ExtResource("5_i6g32")
+packed_scene = ExtResource("6_i6g32")
+parent = NodePath("..")
+metadata/_custom_type_script = "uid://bs6m0667xyjd3"
+
+[node name="FruitHandler" type="Node2D" parent="." unique_id=1242791758 node_paths=PackedStringArray("spawner", "parent")]
+script = ExtResource("7_1l0tm")
+spawner = NodePath("../Spawner")
+fruit = ExtResource("6_i6g32")
+parent = NodePath("..")
+
+[connection signal="timeout" from="GameTimer" to="GameTimer" method="_on_timeout"]

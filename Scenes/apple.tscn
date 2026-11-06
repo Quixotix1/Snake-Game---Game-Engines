@@ -1,0 +1,10 @@
+[gd_scene format=3 uid="uid://dmfu7xlch4dy"]
+
+[ext_resource type="Texture2D" uid="uid://8rqr4uvylfv0" path="res://Sprites/Fruit.png" id="1_v3gsn"]
+
+[node name="Apple" type="Node2D" unique_id=1339213343]
+scale = Vector2(4, 4)
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1035940229]
+position = Vector2(0, -0.25)
+texture = ExtResource("1_v3gsn")

@@ -1,0 +1,9 @@
+[gd_scene format=3 uid="uid://6ros8wntyl02"]
+
+[ext_resource type="Texture2D" uid="uid://kj67wo0mxj7e" path="res://Sprites/Snake.png" id="1_elit1"]
+
+[node name="SnakeBody" type="Node2D" unique_id=855098160]
+scale = Vector2(4, 4)
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=302112687]
+texture = ExtResource("1_elit1")
